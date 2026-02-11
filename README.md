@@ -46,7 +46,7 @@ cd Producer
 cd Consumer
 <code>spark-submit HotspotConsumer.py</code>
 
-Output
+##Output
 
 Visualization for hotspot prediction for streaming data
 ![Descriptive alt text](Output.gif)
