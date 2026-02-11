@@ -1,6 +1,6 @@
 # NYCTAXIProblem Statement
 
-Taxi demand in NYC shifts every few minutes across zones, but most decisions today are reactive.
+Taxi demand in NYC shifts every few minutes across zones, but most decisions for the yellow cabs are reactive.
 
 Drivers guess where to find the next ride
 
@@ -41,9 +41,8 @@ This can be used by:
 🏙️ City planners for mobility insights
 
 How to Run
-1️⃣ Train the Model
-cd "ML Pipeline"
-spark-submit NYCHotspotPrediction.py
+1️⃣ Import the Model
+Run the Python file NYCTaxiHotSpotPrediction Load the model onto required location
 
 2️⃣ Start Kafka
 kafka-topics --create --topic taxi_stream --bootstrap-server localhost:9092
@@ -60,11 +59,8 @@ Output
 
 The system continuously predicts hotspot zones and plots them on the NYC map in real time.
 
-🟢 Predicted hotspots
-🔴 Actual hotspots
-🟣 Correct predictions
-
-(See newplot.png for sample output)
+Visualization for hotspot prediction for streaming data
+![Descriptive alt text](Output.png)
 
 Tech Stack
 
