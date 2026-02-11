@@ -1,66 +1,58 @@
-# NYCTAXIProblem Statement
+# NYC Taxi Hotspot Prediction 🚕📍
+**Real-time 15-minute demand hotspot prediction using PySpark + Kafka**
 
-Taxi demand in NYC shifts every few minutes across zones, but most decisions for the yellow cabs are reactive.
+## 🧩 Problem Statement
 
-Drivers guess where to find the next ride
+Taxi demand in NYC shifts every few minutes across zones, but most operational decisions for yellow cabs are reactive.
 
-Fleet operators lack visibility into demand movement
+- Drivers guess where to find the next ride  
+- Fleet operators lack visibility into demand movement  
+- Aggregators cannot proactively manage distribution or pricing  
+- 15+ years of TLC trip data is rarely used for real-time operational intelligence  
 
-Aggregators cannot proactively manage distribution or pricing
+What’s missing is a **zone-level demand prediction system** that can power positioning, allocation, and pricing decisions **before** demand spikes.
 
-15+ years of TLC trip data is rarely used for real-time operational intelligence
+## ⚙️ What This Project Does
 
-What’s missing is a zone-level demand prediction system that can power positioning, allocation, and pricing decisions before demand spikes.
+This project builds a **batch + streaming ML system** that predicts which NYC taxi zones will be busiest in the next **15 minutes**.
 
-What This Project Does
+- Processes historical TLC data with PySpark  
+- Creates spatiotemporal features at `(zone, 15-min window)`  
+- Trains an ML model to predict future trip counts per zone  
+- Uses Kafka to simulate live trip streams  
+- Runs PySpark Structured Streaming for real-time inference  
+- Continuously outputs **live hotspot zones**  
+- Displays predictions on a NYC map in real time 🗺️  
 
-This project builds a batch + streaming ML system that predicts which NYC taxi zones will be busiest in the next 15 minutes.
+### This system can be used by:
 
-Processes historical TLC data with PySpark
-
-Creates spatiotemporal features at (zone, 15-min window)
-
-Trains a ML model to predict future trip counts per zone
-
-Uses Kafka to simulate live trip streams
-
-Runs PySpark Structured Streaming for real-time inference
-
-Continuously outputs live hotspot zones
-
-Displays predictions on a NYC map in real time 🗺️
-
-This can be used by:
-
-🚖 Drivers for positioning
-
-🚚 Fleet operators for allocation
-
-📈 Aggregators for pricing & surge strategy
-
-🏙️ City planners for mobility insights
+- 🚖 Drivers for positioning  
+- 🚚 Fleet operators for allocation  
+- 📈 Aggregators for pricing & surge strategy  
+- 🏙️ City planners for mobility insights
 
 How to Run
 1️⃣ Import the Model
 Run the Python file NYCTaxiHotSpotPrediction Load the model onto required location
 
 2️⃣ Start Kafka
-kafka-topics --create --topic taxi_stream --bootstrap-server localhost:9092
+<code>kafka-topics --create --topic taxi_stream --bootstrap-server localhost:9092</code>
 
 3️⃣ Start Producer (Simulated Live Data)
 cd Producer
-python TaxiDataStream.py
+<code>python TaxiDataStream.py</code>
 
 4️⃣ Start Consumer (Real-Time Prediction)
 cd Consumer
-spark-submit HotspotConsumer.py
+<code>spark-submit HotspotConsumer.py</code>
 
 Output
 
-The system continuously predicts hotspot zones and plots them on the NYC map in real time.
-
 Visualization for hotspot prediction for streaming data
 ![Descriptive alt text](Output.gif)
+
+Predicted vs Actual NYC Taxi Hotspots (5-min window)
+This view compares predicted (green) and actual (red) demand zones per time bin across TLC regions. The strong overlap demonstrates the model’s ability to reliably forecast short-term taxi demand using streaming trip data and spatiotemporal features. These results validate the system’s usefulness for real-time driver positioning, fleet allocation, and dynamic pricing decisions.
 
 Tech Stack
 
