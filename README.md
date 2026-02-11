@@ -31,9 +31,10 @@ This project builds a **batch + streaming ML system** that predicts which NYC ta
 - 📈 Aggregators for pricing & surge strategy  
 - 🏙️ City planners for mobility insights
 
-How to Run
+### How to Run
+
 1️⃣ Import the Model
-Run the Python file NYCTaxiHotSpotPrediction Load the model onto required location
+Run the Python file NYCTaxiHotSpotPrediction. Import the model in Consumer.
 
 2️⃣ Start Kafka
 <code>kafka-topics --create --topic taxi_stream --bootstrap-server localhost:9092</code>
