@@ -60,7 +60,7 @@ Output
 The system continuously predicts hotspot zones and plots them on the NYC map in real time.
 
 Visualization for hotspot prediction for streaming data
-![Descriptive alt text](Output.png)
+![Descriptive alt text](Output.mov)
 
 Tech Stack
 
